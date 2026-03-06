@@ -1,0 +1,17 @@
+name: PoC Test
+on:
+  issues:
+    types: [opened, edited]  
+
+jobs:
+  poc-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Vulnerable Action
+        uses: ./  
+        with:
+          client_id: "test-id"
+          api_key: "test-key"
+          project_name: ${{ github.event.issue.title }} 
+          sbom_path: "."
